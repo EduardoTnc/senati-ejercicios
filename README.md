@@ -26,34 +26,40 @@ La aplicación proporciona una interfaz de menú interactiva en la consola que p
 ## Instalación
 
 1. Clonar el repositorio:
-   ```
+   ```bash
    git clone https://github.com/EduardoTnc/senati-ejercicios.git
    ```
 
 2. Navegar al directorio del proyecto:
-   ```
+   ```bash
    cd senati-ejercicios
    ```
 
 3. Instalar dependencias (si las hubiera):
-   ```
+   ```bash
    npm install
    ```
 
 ## Uso
 
-Para ejecutar la aplicación, utiliza el siguiente comando en la terminal:
+Para ejecutar la aplicación en modo producción, utiliza el siguiente comando en la terminal:
 
+```bash
+npm start
 ```
-node src/app.js
+
+Para desarrollo (con recarga automática al detectar cambios):
+
+```bash
+npm run dev
 ```
 
 Sigue las instrucciones en pantalla para navegar por el menú y seleccionar los ejercicios.
 
 ## Estructura del Proyecto
 
-```
-senati-express/
+```text
+senati-ejercicios/
 ├── src/
 │   └── app.js      # Aplicación principal con todos los ejercicios
 ├── .gitignore
