@@ -1,7 +1,7 @@
 {
-  "name": "senati-express",
+  "name": "senati-ejercicios",
   "version": "1.0.0",
-  "description": "Servidor web desarrollado con Express.js para SENATI",
+  "description": "Ejercicios interactivos de JavaScript desarrollados para SENATI",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -9,19 +9,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "express",
-    "node",
-    "senati",
-    "api",
-    "server"
+    "javascript",
+    "ejercicios",
+    "interactivo",
+    "consola",
+    "senati"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "morgan": "^1.10.0"
+    "readline": "^1.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

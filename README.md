@@ -27,12 +27,12 @@ La aplicación proporciona una interfaz de menú interactiva en la consola que p
 
 1. Clonar el repositorio:
    ```
-   git clone https://github.com/EduardoTnc/senati-express.git
+   git clone https://github.com/EduardoTnc/senati-ejercicios.git
    ```
 
 2. Navegar al directorio del proyecto:
    ```
-   cd senati-express
+   cd senati-ejercicios
    ```
 
 3. Instalar dependencias (si las hubiera):
