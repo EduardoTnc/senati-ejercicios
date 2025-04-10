@@ -1,169 +1,314 @@
-/**
- * Ejercicio 1: Función para encontrar el número que aparece una sola vez en un array
- * 
- * Descripción: Esta función encuentra el único número que aparece solo una vez en un array
- * donde todos los demás números aparecen exactamente dos veces.
- * 
- * Funcionamiento: Utiliza el operador XOR (^) para cancelar los números que aparecen dos veces,
- * ya que cualquier número XOR consigo mismo es 0, y cualquier número XOR con 0 es el número mismo.
- * Por ejemplo: 5^5=0, 0^7=7
- * 
- * @param {number[]} nums - Array de números enteros
- * @returns {number} - El número que aparece una sola vez
- */
-function findSingleNumber(nums) {
-    return nums.reduce((a, b) => a ^ b);
-}
+const readline = require('readline');
 
 /**
- * Ejercicio 2: Implementación de algoritmo de ordenamiento QuickSort
+ * Aplicación de ejercicios interactivos en JavaScript
  * 
- * Descripción: QuickSort es un algoritmo de ordenamiento eficiente basado en la estrategia
- * "divide y vencerás". Esta implementación ordena un array de números de menor a mayor.
- * 
- * Funcionamiento:
- * 1. Selecciona un elemento como pivote (en este caso, el elemento del medio)
- * 2. Divide el array en tres partes: elementos menores que el pivote, iguales al pivote y mayores que el pivote
- * 3. Aplica recursivamente el mismo proceso a los subarrays de elementos menores y mayores
- * 4. Combina los resultados para obtener el array ordenado
- * 
- * Complejidad: O(n log n) en el caso promedio, O(n²) en el peor caso
- * 
- * @param {number[]} arr - Array de números a ordenar
- * @returns {number[]} - Array ordenado
+ * Esta aplicación muestra varios ejercicios básicos de programación
+ * con una interfaz interactiva para la consola.
  */
-function quickSort(arr) {
-    if (arr.length <= 1) return arr;
-    
-    const pivot = arr[Math.floor(arr.length / 2)];
-    const left = arr.filter(x => x < pivot);
-    const middle = arr.filter(x => x === pivot);
-    const right = arr.filter(x => x > pivot);
-    
-    return [...quickSort(left), ...middle, ...quickSort(right)];
+
+// Configuración de la interfaz de línea de comandos
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Función para limpiar la consola
+function limpiarConsola() {
+    console.clear();
 }
 
-/**
- * Ejercicio 3: Generador de secuencia Fibonacci con memoización
- * 
- * Descripción: Genera los primeros n números de la secuencia de Fibonacci (0, 1, 1, 2, 3, 5, 8, ...)
- * utilizando memoización para mejorar el rendimiento.
- * 
- * Funcionamiento:
- * 1. Utiliza un objeto 'memo' para almacenar los resultados ya calculados
- * 2. La función interna 'fib' calcula el valor de Fibonacci para un número específico
- * 3. Si el valor ya está en memoria, lo devuelve inmediatamente
- * 4. Si no, lo calcula recursivamente y lo guarda en memoria
- * 5. Finalmente, genera un array con los primeros n números de la secuencia
- * 
- * Ventaja: La memoización reduce la complejidad de O(2^n) a O(n), evitando recalcular valores
- * 
- * @param {number} n - Cantidad de números de la secuencia a generar
- * @returns {number[]} - Array con los primeros n números de Fibonacci
- */
-function fibonacciGenerator(n) {
-    const memo = {};
+// Función para mostrar el menú principal
+function mostrarMenu() {
+    limpiarConsola();
+    console.log('=== EJERCICIOS INTERACTIVOS DE JAVASCRIPT ===');
+    console.log('1. Calculadora simple');
+    console.log('2. Verificador de números pares/impares');
+    console.log('3. Conversor de temperatura');
+    console.log('4. Generador de tablas de multiplicar');
+    console.log('5. Contador de vocales');
+    console.log('0. Salir');
+    console.log('==========================================');
     
-    function fib(n) {
-        if (n in memo) return memo[n];
-        if (n <= 1) return n;
-        
-        memo[n] = fib(n-1) + fib(n-2);
-        return memo[n];
-    }
-    
-    return Array.from({length: n}, (_, i) => fib(i));
-}
-
-/**
- * Ejercicio 4: Comprobador de palíndromos que ignora espacios y puntuación
- * 
- * Descripción: Verifica si una cadena de texto es un palíndromo, ignorando mayúsculas/minúsculas,
- * espacios y signos de puntuación. Un palíndromo es una palabra o frase que se lee igual
- * de izquierda a derecha que de derecha a izquierda.
- * 
- * Funcionamiento:
- * 1. Convierte la cadena a minúsculas
- * 2. Elimina todos los caracteres que no sean letras o números usando una expresión regular
- * 3. Compara la cadena limpia con su versión invertida
- * 
- * Ejemplos de palíndromos: "Anita lava la tina", "A man, a plan, a canal: Panama"
- * 
- * @param {string} str - Cadena de texto a verificar
- * @returns {boolean} - true si es palíndromo, false si no lo es
- */
-function isPalindrome(str) {
-    const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-    return cleanStr === cleanStr.split('').reverse().join('');
-}
-
-/**
- * Ejercicio 5: Implementación de una cola de prioridad
- * 
- * Descripción: Una cola de prioridad es una estructura de datos donde cada elemento tiene
- * asociada una prioridad. Los elementos con mayor prioridad (valor numérico menor) se
- * procesan antes que los elementos con menor prioridad.
- * 
- * Funcionamiento:
- * - La cola mantiene los elementos ordenados por su prioridad
- * - Al agregar un elemento (enqueue), se inserta en la posición correcta según su prioridad
- * - Al quitar un elemento (dequeue), se extrae el elemento de mayor prioridad (el primero)
- * 
- * Aplicaciones: Sistemas operativos (planificación de procesos), algoritmos de búsqueda (A*),
- * simulación de eventos, etc.
- * 
- * @class PriorityQueue
- */
-class PriorityQueue {
-    /**
-     * Crea una nueva cola de prioridad vacía
-     */
-    constructor() {
-        this.items = [];
-    }
-    
-    /**
-     * Agrega un elemento a la cola con una prioridad específica
-     * Los elementos con valor numérico menor tienen mayor prioridad
-     * 
-     * @param {any} element - Elemento a agregar
-     * @param {number} priority - Prioridad del elemento (menor número = mayor prioridad)
-     */
-    enqueue(element, priority) {
-        const queueElement = { element, priority };
-        let added = false;
-        
-        // Busca la posición correcta según la prioridad
-        for (let i = 0; i < this.items.length; i++) {
-            if (queueElement.priority < this.items[i].priority) {
-                this.items.splice(i, 0, queueElement);
-                added = true;
+    rl.question('Selecciona un ejercicio (0-5): ', (opcion) => {
+        switch(opcion) {
+            case '1':
+                ejercicioCalculadora();
                 break;
+            case '2':
+                ejercicioParImpar();
+                break;
+            case '3':
+                ejercicioConversorTemperatura();
+                break;
+            case '4':
+                ejercicioTablasMultiplicar();
+                break;
+            case '5':
+                ejercicioContadorVocales();
+                break;
+            case '0':
+                console.log('¡Gracias por usar la aplicación!');
+                rl.close();
+                break;
+            default:
+                console.log('\nOpción no válida. Presiona Enter para continuar...');
+                rl.question('', () => mostrarMenu());
+        }
+    });
+}
+
+/**
+ * Ejercicio 1: Calculadora simple
+ * 
+ * Descripción: Realiza operaciones básicas entre dos números:
+ * suma, resta, multiplicación y división.
+ */
+function ejercicioCalculadora() {
+    limpiarConsola();
+    console.log('=== CALCULADORA SIMPLE ===');
+    console.log('Este ejercicio realiza operaciones básicas entre dos números.');
+    console.log('Operaciones disponibles: suma (+), resta (-), multiplicación (*), división (/)\n');
+    
+    rl.question('Ingresa el primer número: ', (num1) => {
+        rl.question('Ingresa el segundo número: ', (num2) => {
+            rl.question('Ingresa la operación (+, -, *, /): ', (operacion) => {
+                // Convertir las entradas a números
+                const numero1 = parseFloat(num1);
+                const numero2 = parseFloat(num2);
+                let resultado;
+                let simbolo;
+                
+                // Validar que las entradas sean números válidos
+                if (isNaN(numero1) || isNaN(numero2)) {
+                    console.log('\nError: Debes ingresar números válidos.');
+                } else {
+                    // Realizar la operación seleccionada
+                    switch(operacion) {
+                        case '+':
+                            resultado = numero1 + numero2;
+                            simbolo = '+';
+                            break;
+                        case '-':
+                            resultado = numero1 - numero2;
+                            simbolo = '-';
+                            break;
+                        case '*':
+                            resultado = numero1 * numero2;
+                            simbolo = '*';
+                            break;
+                        case '/':
+                            if (numero2 === 0) {
+                                console.log('\nError: No se puede dividir por cero.');
+                                simbolo = null;
+                            } else {
+                                resultado = numero1 / numero2;
+                                simbolo = '/';
+                            }
+                            break;
+                        default:
+                            console.log('\nError: Operación no válida.');
+                            simbolo = null;
+                    }
+                    
+                    // Mostrar el resultado si la operación es válida
+                    if (simbolo) {
+                        console.log(`\nProceso de cálculo:`);
+                        console.log(`${numero1} ${simbolo} ${numero2} = ${resultado}`);
+                        console.log(`\nResultado: ${resultado}`);
+                    }
+                }
+                
+                console.log('\nPresiona Enter para volver al menú principal...');
+                rl.question('', () => mostrarMenu());
+            });
+        });
+    });
+}
+
+/**
+ * Ejercicio 2: Verificador de números pares/impares
+ * 
+ * Descripción: Determina si un número es par o impar y muestra
+ * el proceso de verificación.
+ */
+function ejercicioParImpar() {
+    limpiarConsola();
+    console.log('=== VERIFICADOR DE NÚMEROS PARES/IMPARES ===');
+    console.log('Este ejercicio determina si un número es par o impar.');
+    console.log('Un número es par si al dividirlo por 2 el residuo es 0.\n');
+    
+    rl.question('Ingresa un número entero: ', (numero) => {
+        // Convertir la entrada a número entero
+        const num = parseInt(numero);
+        
+        // Validar que la entrada sea un número válido
+        if (isNaN(num)) {
+            console.log('\nError: Debes ingresar un número entero válido.');
+        } else {
+            const residuo = num % 2;
+            const esPar = residuo === 0;
+            
+            console.log(`\nProceso de verificación:`);
+            console.log(`1. Tomamos el número ${num}`);
+            console.log(`2. Calculamos el residuo de dividir ${num} entre 2: ${num} % 2 = ${residuo}`);
+            console.log(`3. Si el residuo es 0, el número es par; si es 1, es impar`);
+            console.log(`\nResultado: El número ${num} es ${esPar ? 'par' : 'impar'}.`);
+        }
+        
+        console.log('\nPresiona Enter para volver al menú principal...');
+        rl.question('', () => mostrarMenu());
+    });
+}
+
+/**
+ * Ejercicio 3: Conversor de temperatura
+ * 
+ * Descripción: Convierte temperaturas entre grados Celsius y Fahrenheit,
+ * mostrando el proceso de conversión.
+ */
+function ejercicioConversorTemperatura() {
+    limpiarConsola();
+    console.log('=== CONVERSOR DE TEMPERATURA ===');
+    console.log('Este ejercicio convierte temperaturas entre Celsius y Fahrenheit.');
+    console.log('Fórmulas:');
+    console.log('- De Celsius a Fahrenheit: (°C × 9/5) + 32 = °F');
+    console.log('- De Fahrenheit a Celsius: (°F − 32) × 5/9 = °C\n');
+    
+    rl.question('¿Qué conversión deseas realizar? (1: C→F, 2: F→C): ', (opcion) => {
+        if (opcion === '1' || opcion === '2') {
+            const tipo = opcion === '1' ? 'Celsius' : 'Fahrenheit';
+            rl.question(`Ingresa la temperatura en grados ${tipo}: `, (temp) => {
+                // Convertir la entrada a número
+                const temperatura = parseFloat(temp);
+                
+                // Validar que la entrada sea un número válido
+                if (isNaN(temperatura)) {
+                    console.log('\nError: Debes ingresar un valor numérico válido.');
+                } else {
+                    let resultado;
+                    let formula;
+                    
+                    if (opcion === '1') { // Celsius a Fahrenheit
+                        resultado = (temperatura * 9/5) + 32;
+                        formula = `(${temperatura} × 9/5) + 32 = ${resultado.toFixed(2)}`;
+                        console.log(`\nProceso de conversión de Celsius a Fahrenheit:`);
+                        console.log(`1. Multiplicamos ${temperatura}°C por 9/5: ${temperatura} × 9/5 = ${(temperatura * 9/5).toFixed(2)}`);
+                        console.log(`2. Sumamos 32 al resultado: ${(temperatura * 9/5).toFixed(2)} + 32 = ${resultado.toFixed(2)}`);
+                        console.log(`\nResultado: ${temperatura}°C equivale a ${resultado.toFixed(2)}°F`);
+                    } else { // Fahrenheit a Celsius
+                        resultado = (temperatura - 32) * 5/9;
+                        formula = `(${temperatura} − 32) × 5/9 = ${resultado.toFixed(2)}`;
+                        console.log(`\nProceso de conversión de Fahrenheit a Celsius:`);
+                        console.log(`1. Restamos 32 a ${temperatura}°F: ${temperatura} - 32 = ${(temperatura - 32).toFixed(2)}`);
+                        console.log(`2. Multiplicamos el resultado por 5/9: ${(temperatura - 32).toFixed(2)} × 5/9 = ${resultado.toFixed(2)}`);
+                        console.log(`\nResultado: ${temperatura}°F equivale a ${resultado.toFixed(2)}°C`);
+                    }
+                }
+                
+                console.log('\nPresiona Enter para volver al menú principal...');
+                rl.question('', () => mostrarMenu());
+            });
+        } else {
+            console.log('\nOpción no válida.');
+            console.log('Presiona Enter para volver a intentarlo...');
+            rl.question('', () => ejercicioConversorTemperatura());
+        }
+    });
+}
+
+/**
+ * Ejercicio 4: Generador de tablas de multiplicar
+ * 
+ * Descripción: Genera la tabla de multiplicar para un número dado,
+ * mostrando cada paso del proceso.
+ */
+function ejercicioTablasMultiplicar() {
+    limpiarConsola();
+    console.log('=== GENERADOR DE TABLAS DE MULTIPLICAR ===');
+    console.log('Este ejercicio genera la tabla de multiplicar para un número.');
+    console.log('Muestra los resultados del 1 al 10.\n');
+    
+    rl.question('Ingresa un número para ver su tabla de multiplicar: ', (numero) => {
+        // Convertir la entrada a número
+        const num = parseFloat(numero);
+        
+        // Validar que la entrada sea un número válido
+        if (isNaN(num)) {
+            console.log('\nError: Debes ingresar un número válido.');
+        } else {
+            console.log(`\nTabla de multiplicar del ${num}:`);
+            console.log('============================');
+            
+            for (let i = 1; i <= 10; i++) {
+                const resultado = num * i;
+                console.log(`${num} × ${i} = ${resultado}`);
             }
         }
         
-        // Si no se agregó en el bucle, se agrega al final
-        if (!added) {
-            this.items.push(queueElement);
-        }
-    }
-    
-    /**
-     * Extrae y devuelve el elemento de mayor prioridad (el primero de la cola)
-     * 
-     * @returns {any} - El elemento de mayor prioridad o null si la cola está vacía
-     */
-    dequeue() {
-        if (this.isEmpty()) return null;
-        return this.items.shift().element;
-    }
-    
-    /**
-     * Verifica si la cola está vacía
-     * 
-     * @returns {boolean} - true si la cola está vacía, false si contiene elementos
-     */
-    isEmpty() {
-        return this.items.length === 0;
-    }
+        console.log('\nPresiona Enter para volver al menú principal...');
+        rl.question('', () => mostrarMenu());
+    });
 }
+
+/**
+ * Ejercicio 5: Contador de vocales
+ * 
+ * Descripción: Cuenta la cantidad de cada vocal en un texto,
+ * mostrando el proceso de conteo.
+ */
+function ejercicioContadorVocales() {
+    limpiarConsola();
+    console.log('=== CONTADOR DE VOCALES ===');
+    console.log('Este ejercicio cuenta la cantidad de cada vocal en un texto.');
+    console.log('Distingue entre las vocales: a, e, i, o, u (no considera acentos).\n');
+    
+    rl.question('Ingresa un texto: ', (texto) => {
+        if (!texto.trim()) {
+            console.log('\nError: Debes ingresar un texto no vacío.');
+        } else {
+            // Convertir a minúsculas para simplificar el conteo
+            const textoMinusculas = texto.toLowerCase();
+            
+            // Inicializar contadores
+            const vocales = {
+                'a': 0,
+                'e': 0,
+                'i': 0,
+                'o': 0,
+                'u': 0
+            };
+            
+            // Contar vocales
+            console.log(`\nProceso de conteo de vocales en: "${texto}"`);
+            console.log('Recorriendo cada carácter:');
+            
+            for (let i = 0; i < textoMinusculas.length; i++) {
+                const caracter = textoMinusculas[i];
+                if (vocales.hasOwnProperty(caracter)) {
+                    vocales[caracter]++;
+                    console.log(`- Posición ${i+1}: Encontrada vocal '${caracter}' → ${vocales[caracter]} ocurrencia(s) hasta ahora`);
+                }
+            }
+            
+            // Mostrar resultados
+            console.log('\nResultado del conteo:');
+            let totalVocales = 0;
+            
+            for (const vocal in vocales) {
+                console.log(`- Vocal '${vocal}': ${vocales[vocal]} ocurrencia(s)`);
+                totalVocales += vocales[vocal];
+            }
+            
+            console.log(`\nTotal de vocales encontradas: ${totalVocales}`);
+            console.log(`Longitud del texto: ${texto.length} caracteres`);
+        }
+        
+        console.log('\nPresiona Enter para volver al menú principal...');
+        rl.question('', () => mostrarMenu());
+    });
+}
+
+// Iniciar la aplicación mostrando el menú principal
+console.log('Iniciando aplicación de ejercicios interactivos...');
+mostrarMenu();
