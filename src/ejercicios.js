@@ -2,7 +2,10 @@
  * EJERCICIOS PROPUESTOS EN JAVASCRIPT
  */
 
-// 1. Sumar elementos de un array
+/**
+ * 1. Sumar elementos de un array:
+ * Escribe una función que reciba un array de números y devuelva la suma de todos los elementos.
+ */
 function sumarArray(numeros) {
   let suma = 0;
   for (let i = 0; i < numeros.length; i++) {
@@ -14,7 +17,10 @@ function sumarArray(numeros) {
 // Ejemplo de uso:
 console.log("1. Suma de array:", sumarArray([1, 2, 3, 4, 5])); // 15
 
-// 2. Número mayor y menor
+/**
+ * 2. Número mayor y menor:
+ * Crea una función que reciba un array de números y retorne el mayor y el menor.
+ */
 function mayorYMenor(numeros) {
   if (numeros.length === 0) return { mayor: null, menor: null };
   
@@ -36,7 +42,10 @@ function mayorYMenor(numeros) {
 // Ejemplo de uso:
 console.log("2. Mayor y menor:", mayorYMenor([8, 3, 10, 1, 5])); // { mayor: 10, menor: 1 }
 
-// 3. Contar elementos pares
+/**
+ * 3. Contar elementos pares:
+ * Dado un array de números, cuenta cuántos son pares y devuelve el total.
+ */
 function contarPares(numeros) {
   let contador = 0;
   
@@ -52,7 +61,11 @@ function contarPares(numeros) {
 // Ejemplo de uso:
 console.log("3. Cantidad de pares:", contarPares([1, 2, 3, 4, 5, 6])); // 3
 
-// 4. Ordenar un array (usando algoritmo de burbuja)
+/**
+ * 4. Ordenar un array:
+ * Implementa un algoritmo que ordene un array de números de menor a mayor sin usar .sort().
+ * (usando algoritmo de burbuja)
+ */
 function ordenarArray(numeros) {
   const resultado = [...numeros]; // Crear copia para no modificar el original
   
@@ -73,7 +86,10 @@ function ordenarArray(numeros) {
 // Ejemplo de uso:
 console.log("4. Array ordenado:", ordenarArray([5, 3, 8, 1, 2])); // [1, 2, 3, 5, 8]
 
-// 5. Buscar un elemento
+/**
+ * 5. Buscar un elemento:
+ * Dado un array de nombres, busca si un nombre específico está en la lista y devuelve su posición.
+ */
 function buscarNombre(nombres, nombreBuscado) {
   for (let i = 0; i < nombres.length; i++) {
     if (nombres[i] === nombreBuscado) {
@@ -86,7 +102,10 @@ function buscarNombre(nombres, nombreBuscado) {
 // Ejemplo de uso:
 console.log("5. Posición de 'Ana':", buscarNombre(["Juan", "Ana", "Pedro"], "Ana")); // 1
 
-// 6. Revertir un array
+/**
+ * 6. Revertir un array:
+ * Implementa una función que invierta el orden de un array sin usar .reverse().
+ */
 function revertirArray(array) {
   const resultado = [];
   
@@ -100,7 +119,10 @@ function revertirArray(array) {
 // Ejemplo de uso:
 console.log("6. Array revertido:", revertirArray([1, 2, 3, 4, 5])); // [5, 4, 3, 2, 1]
 
-// 7. Convertir nombres a mayúsculas
+/**
+ * 7. Convertir nombres a mayúsculas:
+ * Dado un array de nombres, usa map() para convertirlos todos a mayúsculas.
+ */
 function nombresAMayusculas(nombres) {
   return nombres.map(nombre => nombre.toUpperCase());
 }
@@ -108,7 +130,10 @@ function nombresAMayusculas(nombres) {
 // Ejemplo de uso:
 console.log("7. Nombres en mayúsculas:", nombresAMayusculas(["ana", "juan", "pedro"])); // ["ANA", "JUAN", "PEDRO"]
 
-// 8. Sumar solo los números positivos
+/**
+ * 8. Sumar solo los números positivos:
+ * Filtra los negativos y suma los positivos.
+ */
 function sumarPositivos(numeros) {
   return numeros
     .filter(num => num > 0)
@@ -118,7 +143,10 @@ function sumarPositivos(numeros) {
 // Ejemplo de uso:
 console.log("8. Suma de positivos:", sumarPositivos([-2, 5, -1, 10, 3])); // 18
 
-// 9. Obtener el primer múltiplo de 5
+/**
+ * 9. Obtener el primer múltiplo de 5:
+ * Usa find() para hallar el primer número múltiplo de 5 en un array.
+ */
 function primerMultiploDe5(numeros) {
   return numeros.find(num => num % 5 === 0);
 }
@@ -126,7 +154,10 @@ function primerMultiploDe5(numeros) {
 // Ejemplo de uso:
 console.log("9. Primer múltiplo de 5:", primerMultiploDe5([7, 12, 15, 20, 3])); // 15
 
-// 10. Tabla de multiplicar
+/**
+ * 10. Tabla de multiplicar:
+ * Pide al usuario un número y usa un for para imprimir su tabla de multiplicar del 1 al 10.
+ */
 function tablaDeMultiplicar(numero) {
   console.log(`10. Tabla de multiplicar del ${numero}:`);
   for (let i = 1; i <= 10; i++) {
@@ -137,7 +168,10 @@ function tablaDeMultiplicar(numero) {
 // Para ejecutar esta función, descomentar la siguiente línea y proporcionar un número:
 // tablaDeMultiplicar(7);
 
-// 11. Generar una secuencia de Fibonacci
+/**
+ * 11. Generar una secuencia de Fibonacci:
+ * Usa un for para generar los primeros 10 números de la serie de Fibonacci e imprímelos.
+ */
 function secuenciaFibonacci() {
   const fibonacci = [0, 1];
   
@@ -156,7 +190,10 @@ function secuenciaFibonacci() {
 // Para ejecutar esta función, descomentar la siguiente línea:
 // secuenciaFibonacci();
 
-// 12. Adivinar un número
+/**
+ * 12. Adivinar un número:
+ * Genera un número aleatorio del 1 al 10 y usa un while para pedir al usuario que lo adivine hasta que lo haga correctamente.
+ */
 function adivinarNumero() {
   const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
   let intentos = 0;
@@ -190,7 +227,10 @@ function adivinarNumero() {
   return simularIntento; // Devolvemos la función para poder probarla
 }
 
-// 13. Contar regresivamente desde un número
+/**
+ * 13. Contar regresivamente desde un número:
+ * Usa while para imprimir una cuenta regresiva desde un número ingresado por el usuario hasta 0.
+ */
 function cuentaRegresiva(numeroInicial) {
   console.log(`13. Cuenta regresiva desde ${numeroInicial}:`);
   
@@ -204,7 +244,10 @@ function cuentaRegresiva(numeroInicial) {
 // Para ejecutar esta función, descomentar la siguiente línea:
 // cuentaRegresiva(5);
 
-// 14. Validar entrada de usuario
+/**
+ * 14. Validar entrada de usuario:
+ * Pide al usuario que ingrese un número mayor que 0. Si ingresa un número inválido, vuelve a pedirlo usando do while.
+ */
 function validarNumeroPositivo() {
   let numero;
   
@@ -228,7 +271,10 @@ function validarNumeroPositivo() {
   return simularValidacion;
 }
 
-// 15. Mostrar menú hasta que el usuario salga
+/**
+ * 15. Mostrar menú hasta que el usuario salga:
+ * Muestra un menú con opciones y usa do while para repetir hasta que el usuario elija salir.
+ */
 function mostrarMenu() {
   let opcion;
   
@@ -270,7 +316,12 @@ function mostrarMenu() {
   return simularMenu;
 }
 
-// 16. Sumar solo los números impares entre 1 y 50
+/**
+ * 16. Sumar solo los números impares entre 1 y 50:
+ * - Usa for para recorrer los números del 1 al 50.
+ * - Usa if para sumar solo los impares.
+ * - Usa while para verificar si la suma supera 500 y, si es así, detener el proceso.
+ */
 function sumarImparesHasta500() {
   let suma = 0;
   let i = 1;
@@ -296,7 +347,11 @@ function sumarImparesHasta500() {
 // Para ejecutar esta función, descomentar la siguiente línea:
 // sumarImparesHasta500();
 
-// 17. Contador de intentos (login)
+/**
+ * 17. Contador de intentos (login):
+ * Simula un intento de login.
+ * Usa while para permitir 3 intentos.
+ */
 function simularLogin(usuarioCorrecto, passwordCorrecta) {
   let intentos = 0;
   const maxIntentos = 3;
@@ -333,7 +388,10 @@ function simularLogin(usuarioCorrecto, passwordCorrecta) {
 // login("admin", "contraseña"); // Segundo intento fallido
 // login("admin", "1234"); // Tercer intento exitoso
 
-// 18. Sumar hasta que el usuario ingrese 0
+/**
+ * 18. Sumar hasta que el usuario ingrese 0:
+ * Pide números al usuario y usa while para sumarlos hasta que ingrese 0.
+ */
 function sumarHastaCero() {
   let suma = 0;
   let numero;
@@ -372,7 +430,10 @@ function sumarHastaCero() {
 // const sumador = sumarHastaCero();
 // sumador([5, 10, 15, 0, 20]); // Sumará 5+10+15=30 y se detendrá al encontrar 0
 
-// 19. Imprimir la serie de Fibonacci hasta que un número supere 100
+/**
+ * 19. Imprimir la serie de Fibonacci hasta que un número supere 100:
+ * Usa while para generar la serie de Fibonacci hasta que un número supere 100.
+ */
 function fibonacciHasta100() {
   let a = 0;
   let b = 1;
@@ -401,7 +462,10 @@ function fibonacciHasta100() {
 // Para ejecutar esta función, descomentar la siguiente línea:
 // fibonacciHasta100();
 
-// 20. Imprimir los múltiplos de 3 hasta 50
+/**
+ * 20. Imprimir los múltiplos de 3 hasta 50:
+ * Usa while para imprimir los múltiplos de 3 menores a 50.
+ */
 function multiplosDe3Hasta50() {
   let numero = 3;
   
